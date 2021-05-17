@@ -11,6 +11,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 @Service
 public class GitHubUserDataGrabbingService {
@@ -34,6 +35,7 @@ public class GitHubUserDataGrabbingService {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .uri(URI.create(gitHubProperties.getUrl() + login))
+                .timeout(gitHubProperties.getTimeout())
                 .build();
 
         return request;
