@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class GitHubService {
 
     @Autowired
-    private GitHubUserGrabbingService gitHubUserGrabbingService;
+    private GitHubUserDataGrabbingService gitHubUserDataGrabbingService;
 
     @Autowired
     private UserStatsService userStatsService;
@@ -17,7 +17,7 @@ public class GitHubService {
     public UserDataExtended getUserData(String login) {
 
         try {
-            GitHubUserDataResponse userDataResponse = gitHubUserGrabbingService.getGitHubUserDataResponse(login);
+            GitHubUserDataResponse userDataResponse = gitHubUserDataGrabbingService.getGitHubUserDataResponse(login);
             userStatsService.updateStats(login);
 
             return userDataResponse.mapToExtended();

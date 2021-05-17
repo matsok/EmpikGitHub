@@ -22,7 +22,7 @@ class GitHubServiceTest {
     private UserStatsService userStatsServiceMock;
 
     @MockBean
-    private GitHubUserGrabbingService gitHubUserGrabbingServiceMock;
+    private GitHubUserDataGrabbingService gitHubUserDataGrabbingServiceMock;
 
 
     @SneakyThrows
@@ -33,7 +33,7 @@ class GitHubServiceTest {
 
         GitHubUserDataResponse gitHubUserDataResponse = new GitHubUserDataResponse();
         gitHubUserDataResponse.setLogin("login");
-        when(gitHubUserGrabbingServiceMock.getGitHubUserDataResponse("login"))
+        when(gitHubUserDataGrabbingServiceMock.getGitHubUserDataResponse("login"))
                 .thenReturn(gitHubUserDataResponse);
 
         // when
@@ -52,7 +52,7 @@ class GitHubServiceTest {
         // given
         GitHubUserDataResponse gitHubUserDataResponse = new GitHubUserDataResponse();
         gitHubUserDataResponse.setLogin("login");
-        when(gitHubUserGrabbingServiceMock.getGitHubUserDataResponse("login"))
+        when(gitHubUserDataGrabbingServiceMock.getGitHubUserDataResponse("login"))
                 .thenThrow(new InterruptedException());
 
         // when

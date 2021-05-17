@@ -79,6 +79,6 @@ public class GitHubUserDataResponse {
     private Double calculate() {
         if(this.followers == null || this.followers == 0 || this.publicRepos == null) return null;
 
-        return ((double) 6 / this.getFollowers()) * (2 * this.getPublicRepos());
+        return (double) 6 / this.getFollowers() * 2 * this.getPublicRepos();
     }
 }

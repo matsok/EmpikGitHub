@@ -13,7 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 @Service
-public class GitHubUserGrabbingService {
+public class GitHubUserDataGrabbingService {
 
     @Autowired
     private GitHubProperties gitHubProperties;
