@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "LOGIN_STATS")
-public class LoginStats {
+public class UserStats {
     @Id
     @Column(name = "LOGIN")
     private String login;
@@ -21,7 +21,7 @@ public class LoginStats {
     @Column(name = "REQUEST_COUNT")
     private Integer requestCount;
 
-    public LoginStats incrementStats() {
+    public UserStats incrementStats() {
         if(this.requestCount != null) this.requestCount++;
         return this;
     }

@@ -1,6 +1,6 @@
 package com.mati.github.services;
 
-import com.mati.github.model.LoginStats;
+import com.mati.github.model.UserStats;
 import com.mati.github.repository.UserStatsRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -24,31 +24,31 @@ class UserStatsServiceTest {
     public void shouldUpdateExistingUserStatByIncrementingCounter() {
         // given
         when(userStatsRepositoryMock.existsById("login")).thenReturn(true);
-        LoginStats loginStats = new LoginStats("login", 4);
-        when(userStatsRepositoryMock.getOne("login")).thenReturn(loginStats);
-        LoginStats resultingLoginStats = loginStats.incrementStats();
-        when(userStatsRepositoryMock.save(resultingLoginStats)).thenReturn(resultingLoginStats);
+        UserStats userStats = new UserStats("login", 4);
+        when(userStatsRepositoryMock.getOne("login")).thenReturn(userStats);
+        UserStats resultingUserStats = userStats.incrementStats();
+        when(userStatsRepositoryMock.save(resultingUserStats)).thenReturn(resultingUserStats);
 
         // when
         userStatsService.updateStats("login");
 
         // then
-        verify(userStatsRepositoryMock).save(resultingLoginStats);
-        verify(userStatsRepositoryMock, never()).save(new LoginStats("login", 1));
+        verify(userStatsRepositoryMock).save(resultingUserStats);
+        verify(userStatsRepositoryMock, never()).save(new UserStats("login", 1));
     }
 
     @Test
     public void shouldPersistNewUserStatWithCounterEqualsOne() {
         // given
         when(userStatsRepositoryMock.existsById("login")).thenReturn(false);
-        LoginStats loginStats = new LoginStats("login", 1);
-        when(userStatsRepositoryMock.save(loginStats)).thenReturn(loginStats);
+        UserStats userStats = new UserStats("login", 1);
+        when(userStatsRepositoryMock.save(userStats)).thenReturn(userStats);
 
         // when
         userStatsService.updateStats("login");
 
         // then
-        ArgumentCaptor<LoginStats> argument = ArgumentCaptor.forClass(LoginStats.class);
+        ArgumentCaptor<UserStats> argument = ArgumentCaptor.forClass(UserStats.class);
         verify(userStatsRepositoryMock).save(argument.capture());
         assertEquals("login", argument.getValue().getLogin());
     }

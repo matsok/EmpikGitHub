@@ -1,6 +1,6 @@
 package com.mati.github.services;
 
-import com.mati.github.model.LoginStats;
+import com.mati.github.model.UserStats;
 import com.mati.github.repository.UserStatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,11 @@ public class UserStatsService {
     public void updateStats(String login) {
         boolean exists = userStatsRepository.existsById(login);
         if(exists) {
-            LoginStats loginStats = userStatsRepository.getOne(login);
-            userStatsRepository.save(loginStats.incrementStats());
+            UserStats userStats = userStatsRepository.getOne(login);
+            userStatsRepository.save(userStats.incrementStats());
             return;
         }
 
-        userStatsRepository.save(new LoginStats(login, 1));
+        userStatsRepository.save(new UserStats(login, 1));
     }
 }

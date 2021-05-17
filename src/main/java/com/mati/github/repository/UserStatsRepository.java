@@ -1,8 +1,8 @@
 package com.mati.github.repository;
 
 
-import com.mati.github.model.LoginStats;
+import com.mati.github.model.UserStats;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserStatsRepository extends JpaRepository<LoginStats, String> {
+public interface UserStatsRepository extends JpaRepository<UserStats, String> {
 }
