@@ -15,6 +15,7 @@ public class UserEndpoints {
 
     @GetMapping("users/{login}")
     public UserDataExtended getUserData(@PathVariable String login) {
+
         return gitHubService.getUserData(login);
     }
 }

@@ -1,11 +1,9 @@
 package com.mati.github.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.val;
 
 import java.time.LocalDateTime;
 
@@ -79,6 +77,8 @@ public class GitHubUserDataResponse {
     }
 
     private Double calculate() {
-        return (double) (6 / this.getFollowers() * (2 * this.getPublicRepos()));
+        if(this.followers == null || this.followers == 0 || this.publicRepos == null) return null;
+
+        return ((double) 6 / this.getFollowers()) * (2 * this.getPublicRepos());
     }
 }
